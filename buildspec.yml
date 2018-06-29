@@ -1,0 +1,16 @@
+version: 0.2
+phases:
+  pre_build:
+    commands:
+      - docker version
+      - $(aws ecr get-login --no-include-email)
+      - docker pull ${REPOSITORY_URI}:${APP} || true
+  build:
+    commands:
+      - docker build --cache-from ${REPOSITORY_URI}:${APP} --tag ${REPOSITORY_URI}:${APP} --tag "${REPOSITORY_URI}:$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)" --tag "$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)" .
+  post_build:
+    commands:
+      - docker push "${REPOSITORY_URI}"
+      - printf '{"version":"%s"}' "$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)" > version.json
+artifacts:
+  files: version.json
