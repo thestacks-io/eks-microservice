@@ -165,7 +165,6 @@ Resources:
     Type: AWS::CodePipeline::Pipeline
     DependsOn:
       - CodePipelinePolicy
-      - CloudFormationPolicy
     Properties:
       RestartExecutionOnUpdate: True
       RoleArn: !GetAtt CodePipelineRole.Arn
@@ -204,3 +203,9 @@ Resources:
               OutputArtifacts:
                 - Name: BuildOutput
               RunOrder: 1
+
+
+Outputs:
+  ECRUrl:
+    Description: ECR URL
+    Value: !Sub "${AWS::AccountId}.dkr.ecr.${AWS::Region}.amazonaws.com/${Repository}"

@@ -1,0 +1,11 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: eks-microservice
+spec:
+  selector:
+    app: eks-microservice
+  ports:
+  - port: 80
+    targetPort: http-server
+  type: LoadBalancer

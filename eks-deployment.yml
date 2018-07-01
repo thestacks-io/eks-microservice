@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eks-microservice
+  labels:
+    app: eks-microservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: eks-microservice
+  template:
+    metadata:
+      labels:
+        app: eks-microservice
+    spec:
+      containers:
+      - name: eks-microservice
+        image: <ecr-url>:<image-version>
+        ports:
+        - containerPort: 8000
+          name: http-server
