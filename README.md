@@ -4,7 +4,7 @@ In this example we use
 
 Check out our [AWS EKS Kubernetes Cluster](https://github.com/thestacks-io/eks-cluster) project to see how we use CloudFormation to spin up a new EKS Kubernetes cluster.
 
-# Prerequisits
+# Prerequisites
 - [AWS Account](https://aws.amazon.com/)
 - [EC2 Key Pair](https://console.aws.amazon.com/ec2/v2/home)
 - [cim.sh](https://cim.sh/) - `npm install -g cim`
